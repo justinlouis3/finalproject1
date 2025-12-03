@@ -160,12 +160,12 @@ function BrokenCalculator() {
   // Bug: This function has issues with type conversion and error handling
   const calculate = () => {
     const sum = num1 + num2 // Bug: String concatenation instead of addition
-    setResult(sum)
+    setResult(sum as any)
   }
 
   // Bug: Missing divide by zero check
   const divide = () => {
-    setResult(num1 / num2)
+    setResult((num1 as any) / (num2 as any))
   }
 
   return (
