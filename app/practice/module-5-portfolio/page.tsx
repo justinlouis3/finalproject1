@@ -198,6 +198,7 @@ const ContactForm = () => {
 export default function Module5Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     if (darkMode) {
@@ -215,14 +216,24 @@ export default function Module5Portfolio() {
     setDarkMode(!darkMode)
   }
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
-        <nav className="max-w-6xl mx-auto px-6 py-4">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">Portfolio</div>
-            <div className="flex items-center gap-8">
+            <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Portfolio</div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
               <ul className="flex gap-8">
                 <li>
                   <a href="#hero" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
@@ -253,43 +264,119 @@ export default function Module5Portfolio() {
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? (
-                  // Sun Icon
                   <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
                   </svg>
                 ) : (
-                  // Moon Icon
                   <svg className="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                   </svg>
                 )}
               </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-2">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? (
+                  <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                  </svg>
+                )}
+              </button>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? (
+                  <svg className="w-6 h-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4">
+              <ul className="flex flex-col gap-4">
+                <li>
+                  <a 
+                    href="#hero" 
+                    onClick={closeMobileMenu}
+                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#projects" 
+                    onClick={closeMobileMenu}
+                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  >
+                    Projects
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#about" 
+                    onClick={closeMobileMenu}
+                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#contact" 
+                    onClick={closeMobileMenu}
+                    className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )}
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="max-w-6xl mx-auto px-6 py-32">
+      <section id="hero" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 xl:py-40">
         <div className={`text-center transition-all duration-1000 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <div className="mb-6">
-            <span className="text-lg text-blue-600 dark:text-blue-400 font-semibold">Welcome to my portfolio</span>
+          <div className="mb-4 sm:mb-6">
+            <span className="text-base sm:text-lg md:text-xl text-blue-600 dark:text-blue-400 font-semibold">Welcome to my portfolio</span>
           </div>
-          <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight px-4">
             Hi, I'm <span className="text-blue-600 dark:text-blue-400">Justin</span>
           </h1>
-          <p className="text-2xl text-gray-600 dark:text-gray-300 mb-4 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 max-w-4xl mx-auto px-4">
             Frontend Developer crafting elegant solutions to complex problems
           </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
             I specialize in building modern web applications with React, Next.js, and TypeScript.
             Passionate about creating exceptional user experiences and writing clean, maintainable code.
           </p>
           <a 
             href="mailto:your.email@example.com"
-            className="inline-block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+            className="inline-block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base"
           >
             Contact Me
           </a>
@@ -297,12 +384,12 @@ export default function Module5Portfolio() {
       </section>
 
       {/* Projects Grid */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured Projects</h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">Here are some of my recent works</p>
+      <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 xl:py-24">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Featured Projects</h2>
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg md:text-xl">Here are some of my recent works</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {/* Project Card 1 - E-Commerce Platform */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
             <div className="relative h-56 overflow-hidden">
@@ -393,16 +480,16 @@ export default function Module5Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">About Me</h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">Get to know me better</p>
+      <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">About Me</h2>
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg md:text-xl">Get to know me better</p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Photo */}
-          <div className="flex justify-center mb-8">
-            <div className="w-64 h-64 rounded-full overflow-hidden shadow-2xl border-4 border-blue-600 dark:border-blue-400">
+          <div className="flex justify-center mb-8 sm:mb-10">
+            <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-blue-600 dark:border-blue-400">
               <img 
                 src="/profile.jpeg" 
                 alt="Justin - Frontend Developer"
@@ -413,19 +500,19 @@ export default function Module5Portfolio() {
 
           {/* Bio */}
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Hello, I'm Justin</h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Hello, I'm Justin</h3>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">-gray-300 leading-relaxed mb-4">
               I'm a passionate Frontend Developer specializing in building modern, responsive web 
               applications. I love transforming ideas into beautiful, functional digital experiences 
               that users enjoy and businesses value.
             </p>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">-gray-300 leading-relaxed mb-4">
               My journey in web development started with an intense curiosity about how websites work, 
               which led me to dive deep into modern frameworks and best practices. Through dedicated 
               learning and hands-on projects, I've developed a strong foundation in creating intuitive 
               user interfaces and solving complex problems with clean, maintainable code.
             </p>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
               When I'm not coding, you can find me staying current with the latest web technologies, 
               working on personal projects to expand my skill set, and connecting with the developer 
               community to share insights and learn from others.
@@ -433,13 +520,13 @@ export default function Module5Portfolio() {
           </div>
 
           {/* Skills Section */}
-          <div className="mt-12">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Skills & Technologies</h3>
+          <div className="mt-12 sm:mt-16">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center">Skills & Technologies</h3>
             
             {/* Frontend Skills */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Frontend Development</h4>
-              <div className="grid grid-cols-2 gap-3">
+            <div className="mb-6 sm:mb-8">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">Frontend Development</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4">
                 <div className="flex items-center gap-2 bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">React</span>
@@ -468,9 +555,9 @@ export default function Module5Portfolio() {
             </div>
 
             {/* Styling & Tools */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Styling & UI</h4>
-              <div className="grid grid-cols-2 gap-3">
+            <div className="mb-6 sm:mb-8">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">Styling & UI</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4">
                 <div className="flex items-center gap-2 bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-2 h-2 bg-green-600 dark:bg-green-400 rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">Tailwind CSS</span>
@@ -492,8 +579,8 @@ export default function Module5Portfolio() {
 
             {/* Tools & Others */}
             <div>
-              <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Tools & Others</h4>
-              <div className="grid grid-cols-2 gap-3">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">Tools & Others</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4">
                 <div className="flex items-center gap-2 bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-2 h-2 bg-purple-600 dark:bg-purple-400 rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">Git & GitHub</span>
@@ -517,19 +604,19 @@ export default function Module5Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="max-w-6xl mx-auto px-6 py-32 bg-white dark:bg-gray-900">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Get In Touch</h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">Have a project in mind? Let's work together!</p>
+      <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 xl:py-40 bg-white dark:bg-gray-900">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Get In Touch</h2>
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg md:text-xl px-4">Have a project in mind? Let's work together!</p>
         </div>
 
         <ContactForm />
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <footer className="bg-gray-900 text-white py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 mb-6 sm:mb-8">
             {/* Brand Section */}
             <div>
               <h3 className="text-2xl font-bold mb-4">Justin</h3>
