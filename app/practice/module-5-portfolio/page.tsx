@@ -501,12 +501,12 @@ export default function Module5Portfolio() {
           {/* Bio */}
           <div className="text-center">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Hello, I'm Justin</h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">-gray-300 leading-relaxed mb-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
               I'm a passionate Frontend Developer specializing in building modern, responsive web 
               applications. I love transforming ideas into beautiful, functional digital experiences 
               that users enjoy and businesses value.
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">-gray-300 leading-relaxed mb-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
               My journey in web development started with an intense curiosity about how websites work, 
               which led me to dive deep into modern frameworks and best practices. Through dedicated 
               learning and hands-on projects, I've developed a strong foundation in creating intuitive 
